@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #define FILENAME "mystery.txt"
 
+
+//prototypes
 void getsecret(char mystery[5]);
 void getguess(int guess, char guesses[6][5]);
 void checkguess(int guess, char guesses[6][5], char mystery[5], char hint[6][5]);
@@ -15,6 +17,8 @@ void display(char guesses[6][5], int guess, char hint[6][5]);
 bool checkinput(char fetch[30]);
 bool checklength(char fetch[30]);
 
+
+//the main function
 int main(){
     char mystery[5], guesses[6][5], hint[6][5];
     int guess = 1;
@@ -48,8 +52,8 @@ int main(){
 
 
 
-
-void getsecret(char mystery[5]){
+//functions
+void getsecret(char mystery[5]){	//gets word from the txt file
     char grab[30];
     FILE *read;
     read = fopen(FILENAME, "r");
@@ -63,7 +67,7 @@ void getsecret(char mystery[5]){
     }
 }
 
-void getguess(int guess, char guesses[6][5]){
+void getguess(int guess, char guesses[6][5]){		//gets user guess
     char fetch[30];
     if(guess < 6){
         printf("GUESS %d! Enter your guess: ", guess);
@@ -105,7 +109,7 @@ void getguess(int guess, char guesses[6][5]){
     }
 }
 
-void checkguess(int guess, char guesses[6][5], char mystery[5], char hint[6][5]){
+void checkguess(int guess, char guesses[6][5], char mystery[5], char hint[6][5]){		//checks the user's guess and stores necessary hints
     int index = guess - 1;
     for(int i = 0; i < 5; i++){
         hint[index][i] = ' ';
@@ -122,7 +126,7 @@ void checkguess(int guess, char guesses[6][5], char mystery[5], char hint[6][5])
     }
 }
 
-bool found(int guess, char guesses[6][5], char mystery[5]){
+bool found(int guess, char guesses[6][5], char mystery[5]){		//checks if correct word was guessed
     int index = guess - 1;
     char theguess[5];
     for(int i = 0; i < 5; i++){
@@ -142,7 +146,7 @@ bool found(int guess, char guesses[6][5], char mystery[5]){
     return true;
 }
 
-void correct(int guess, char mystery[5]){
+void correct(int guess, char mystery[5]){		//to respond accordingly if correct word is guessed
     for(int i = 0; i < 32; i++){
         printf("=");
     }
@@ -182,7 +186,7 @@ void correct(int guess, char mystery[5]){
 }
 
 
-void display(char guesses[6][5], int guess, char hint[6][5]){
+void display(char guesses[6][5], int guess, char hint[6][5]){		//displays guessed words and hints
  
     for(int i = 0; i < 32; i++){
         printf("=");
@@ -201,7 +205,7 @@ void display(char guesses[6][5], int guess, char hint[6][5]){
 }
 
 
-bool checklength(char fetch[30]){
+bool checklength(char fetch[30]){		//checks that entered length is correct
     int length = 0;
     for(int i = 0; fetch[i] != '\0'; i++){
         length++;
@@ -215,7 +219,7 @@ bool checklength(char fetch[30]){
 }
 
 
-bool checkinput(char fetch[30]){
+bool checkinput(char fetch[30]){		//checks that entered word is all letters
     for(int i = 0; fetch[i]!= '\0'; i++){
         if(((fetch[i] < 'A') || (fetch[i] > 'Z' && fetch[i] < 'a') || (fetch[i] > 'z'))){
             return false;
