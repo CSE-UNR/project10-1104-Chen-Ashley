@@ -1,0 +1,8 @@
+sound
+nurse
+sauce
+table
+shirt
+board
+chair
+
