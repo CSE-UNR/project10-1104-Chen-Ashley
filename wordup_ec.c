@@ -47,11 +47,6 @@ int main(){
     }
     else{
         printf("You lost, better luck next time!\n");
-        printf("The answer was: ");
-        for(int i = 0; i < 5; i++){
-        	printf("%c", mystery[i]);
-        }
-        printf("\n");
     }
 
     return 0;
