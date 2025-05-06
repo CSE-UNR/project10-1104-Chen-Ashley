@@ -60,9 +60,15 @@ void getsecret(char mystery[5]){	//gets word from the txt file
     char grab[7][30];
     FILE *read;
     read = fopen(FILENAME, "r");
-   
-    for(int i = 0; i < 7; i++){
-    	fscanf(read, "%s", grab[i]);
+  
+  
+    if(read == NULL){
+    	printf("Could not open file\n");
+    }
+    
+    int i = 0;
+    while(fscanf(read, "%s", grab[i]) == 1){
+    	i++;
     }
     fclose(read);
     
@@ -237,4 +243,4 @@ bool checkinput(char fetch[30]){		//checks that entered word is all letters
        return true;
 }
 
-	
+
